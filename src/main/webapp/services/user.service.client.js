@@ -8,7 +8,7 @@ function AdminUserServiceClient() {
     var self = this;
 
     function createUser(user) {
-        return fetch('http://localhost:8080/users', {
+        return fetch('https://wbdv-sp20-ryan-teng-server-jav.herokuapp.com/api/001642349/users', {
             method: 'POST',
             body: JSON.stringify(user),
             headers: {
@@ -20,20 +20,20 @@ function AdminUserServiceClient() {
     }
 
     function findAllUsers() {
-        return fetch('http://localhost:8080/users')
+        return fetch('https://wbdv-sp20-ryan-teng-server-jav.herokuapp.com/api/001642349/users')
             .then(function(response){
                 return response.json()
             })
     }
 
     function findUserById(userId) {
-        return fetch('http://localhost:8080/users/' + userId).then(function(response){
+        return fetch('https://wbdv-sp20-ryan-teng-server-jav.herokuapp.com/api/001642349/users/' + userId).then(function(response){
             return response.json()
         })
     }
 
     function updateUser(userId, user) {
-        return fetch('http://localhost:8080/users/' + userId, {
+        return fetch('https://wbdv-sp20-ryan-teng-server-jav.herokuapp.com/api/001642349/users/' + userId, {
             method: 'PUT',
             body: JSON.stringify(user),
             headers: {
@@ -44,7 +44,7 @@ function AdminUserServiceClient() {
         })
     }
     function deleteUser(userId) {
-        return fetch('http://localhost:8080/users/' + userId, {
+        return fetch('https://wbdv-sp20-ryan-teng-server-jav.herokuapp.com/api/001642349/users/' + userId, {
             method: 'DELETE'
         }).then(function(response){
             return response.json()
