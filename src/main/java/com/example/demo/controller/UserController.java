@@ -14,6 +14,16 @@ public class UserController {
     // POST - Creating
     @PostMapping("/users")
     public List<User> createUser(@RequestBody User user) {
+        boolean free = false;
+        while (!free) {
+            for (int i = 0; i < users.size(); i++) {
+                if (users.get(i).getId() == user.getId()) {
+                    user.setId((long)(Math.random() * 1000000));
+                    i = 0;
+                }
+            }
+            free = true;
+        }
         users.add(user);
         return users;
     }
@@ -26,9 +36,9 @@ public class UserController {
 
     // GET
     @GetMapping("/users/{id}")
-    public User findUser(@PathVariable("id") long id) {
+    public User findUser(@PathVariable("id") String id) {
         for (User user: users) {
-            if (user.getId() == id) {
+            if (user.getId() == Long.parseLong(id)) {
                 return user;
             }
         }
@@ -37,21 +47,23 @@ public class UserController {
 
     // EDIT
     @PutMapping("/users/{id}")
-    public List<User> editUser(@PathVariable("id") long id, @RequestBody User user) {
+    public List<User> editUser(@PathVariable("id") String id, @RequestBody User user) {
         for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).getId() == id) {
+            System.out.print("Loop");
+            if (users.get(i).getId() == Long.parseLong(id)) {
                 users.set(i, user);
+                System.out.print("Here");
             }
         }
         return users;
     }
 
     // DELETE - Deleting
-    @DeleteMapping("users/{id}")
-    public List<User> deleteUser(@PathVariable("id") long id) {
+    @DeleteMapping("/users/{id}")
+    public List<User> deleteUser(@PathVariable("id") String id) {
         int idx = -1;
         for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).getId() == id) {
+            if (users.get(i).getId() == Long.parseLong(id)) {
                 idx = i;
                 break;
             }
