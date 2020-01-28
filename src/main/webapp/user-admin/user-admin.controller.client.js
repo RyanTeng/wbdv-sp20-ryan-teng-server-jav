@@ -50,10 +50,11 @@
     }
 
     function findAllUsers() {
-
+        userService.findAllUsers().then(renderUsers)
     }
 
-    function findUserById() {
+    function findUserById(event) {
+        userService.findUserById(event.data.id).then(updateUser)
     }
 
     function deleteUser(event) {
@@ -79,8 +80,15 @@
 
     function updateUser() {
         if ($currentUser) {
-            console.log("Here");
-            userService.updateUser($currentUser.id, $currentUser).then(renderUser).then(clearFields);
+            var user = {
+                id: $currentUser.id,
+                username: $('#usernameFld').val(),
+                password: $('#passwordFld').val(),
+                firstName: $('#firstNameFld').val(),
+                lastName: $('#lastNameFld').val(),
+                role: $('#roleFld').val()
+            };
+            userService.updateUser($currentUser.id, user).then(renderUsers).then(clearFields);
             $currentUser = null;
         }
     }

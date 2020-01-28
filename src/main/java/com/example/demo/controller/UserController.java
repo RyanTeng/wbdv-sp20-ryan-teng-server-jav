@@ -31,6 +31,10 @@ public class UserController {
     // GET ALL
     @GetMapping("/users")
     public List<User> findAllUsers() {
+        for (User user:
+             users) {
+            System.out.println(user.getFirstName());
+        }
         return users;
     }
 
@@ -49,10 +53,8 @@ public class UserController {
     @PutMapping("/users/{id}")
     public List<User> editUser(@PathVariable("id") String id, @RequestBody User user) {
         for (int i = 0; i < users.size(); i++) {
-            System.out.print("Loop");
             if (users.get(i).getId() == Long.parseLong(id)) {
                 users.set(i, user);
-                System.out.print("Here");
             }
         }
         return users;

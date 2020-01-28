@@ -31,6 +31,7 @@ function AdminUserServiceClient() {
             return response.json()
         })
     }
+
     function updateUser(userId, user) {
         return fetch('http://localhost:8080/users/' + userId, {
             method: 'PUT',
