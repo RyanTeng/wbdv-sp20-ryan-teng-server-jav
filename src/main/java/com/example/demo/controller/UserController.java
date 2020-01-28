@@ -12,7 +12,7 @@ public class UserController {
     static List<User> users = new ArrayList<User>();
 
     // POST - Creating
-    @PostMapping("/users")
+    @PostMapping("/api/001642349/users")
     public List<User> createUser(@RequestBody User user) {
         boolean free = false;
         while (!free) {
@@ -29,7 +29,7 @@ public class UserController {
     }
 
     // GET ALL
-    @GetMapping("/users")
+    @GetMapping("/api/001642349/users")
     public List<User> findAllUsers() {
         for (User user:
              users) {
@@ -39,7 +39,7 @@ public class UserController {
     }
 
     // GET
-    @GetMapping("/users/{id}")
+    @GetMapping("/api/001642349/users/{id}")
     public User findUser(@PathVariable("id") String id) {
         for (User user: users) {
             if (user.getId() == Long.parseLong(id)) {
@@ -50,7 +50,7 @@ public class UserController {
     }
 
     // EDIT
-    @PutMapping("/users/{id}")
+    @PutMapping("/api/001642349/users/{id}")
     public List<User> editUser(@PathVariable("id") String id, @RequestBody User user) {
         for (int i = 0; i < users.size(); i++) {
             if (users.get(i).getId() == Long.parseLong(id)) {
@@ -61,7 +61,7 @@ public class UserController {
     }
 
     // DELETE - Deleting
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/api/001642349/users/{id}")
     public List<User> deleteUser(@PathVariable("id") String id) {
         int idx = -1;
         for (int i = 0; i < users.size(); i++) {
