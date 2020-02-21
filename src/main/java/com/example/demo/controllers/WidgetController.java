@@ -16,33 +16,27 @@ public class WidgetController {
 
 
     @PostMapping("/widgets")
-    public Widget createWidget(
-            @RequestBody Widget newWidget) {
+    public Widget createWidget(@RequestBody Widget newWidget) {
         return service.createWidget(newWidget);
     }
 
     @GetMapping("/widgets/{widgetId}/delete")
-    public int deleteWidgetNotREST(
-            @PathVariable("widgetId") Integer wid) {
+    public int deleteWidgetNotREST(@PathVariable("widgetId") Integer wid) {
         return service.deleteWidget(wid);
     }
 
     @DeleteMapping("/widgets/{widgetId}")
-    public int deleteWidget(
-            @PathVariable("widgetId") Integer wid) {
+    public int deleteWidget(@PathVariable("widgetId") Integer wid) {
         return service.deleteWidget(wid);
     }
 
     @PutMapping("/widgets/{widgetId}")
-    public int updateWidget(
-            @PathVariable("widgetId") String wid,
-            @RequestBody Widget updatedWidget) {
+    public int updateWidget(@PathVariable("widgetId") String wid, @RequestBody Widget updatedWidget) {
         return service.updateWidget(wid, updatedWidget);
     }
 
     @GetMapping("/widgets/{widgetId}")
-    public Widget findWidgetById(
-            @PathVariable("widgetId") Integer wid) {
+    public Widget findWidgetById(@PathVariable("widgetId") Integer wid) {
         return service.findWidgetById(wid);
     }
 
