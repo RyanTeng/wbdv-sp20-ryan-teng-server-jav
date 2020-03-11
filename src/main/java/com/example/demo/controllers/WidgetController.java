@@ -15,37 +15,33 @@ public class WidgetController {
     WidgetService service;
 
 
-    @PostMapping("/widgets")
-    public Widget createWidget(@RequestBody Widget newWidget) {
-        return service.createWidget(newWidget);
+    @PostMapping("api/topics/{tid}/widgets")
+    public Widget createWidget(@PathVariable("tid") int tid, @RequestBody Widget newWidget) {
+        return service.createWidget(tid, newWidget);
     }
 
-    @GetMapping("/widgets/{widgetId}/delete")
-    public int deleteWidgetNotREST(@PathVariable("widgetId") Integer wid) {
+
+    @DeleteMapping("api/widgets/{wid}")
+    public int deleteWidget(@PathVariable("wid") Integer wid) {
         return service.deleteWidget(wid);
     }
 
-    @DeleteMapping("/widgets/{widgetId}")
-    public int deleteWidget(@PathVariable("widgetId") Integer wid) {
-        return service.deleteWidget(wid);
-    }
-
-    @PutMapping("/widgets/{widgetId}")
-    public int updateWidget(@PathVariable("widgetId") String wid, @RequestBody Widget updatedWidget) {
+    @PutMapping("api/widgets/{wid}")
+    public int updateWidget(@PathVariable("wid") int wid, @RequestBody Widget updatedWidget) {
         return service.updateWidget(wid, updatedWidget);
     }
 
-    @GetMapping("/widgets/{widgetId}")
-    public Widget findWidgetById(@PathVariable("widgetId") Integer wid) {
+    @GetMapping("api/widgets/{wid}")
+    public Widget findWidgetById(@PathVariable("wid") Integer wid) {
         return service.findWidgetById(wid);
     }
 
-    @GetMapping("/widgets")
+    @GetMapping("api/widgets")
     public List<Widget> findAllWidgets() {
         return service.findAllWidgets();
     }
 
-    @GetMapping("/topics/{tid}/widgets")
+    @GetMapping("api/topics/{tid}/widgets")
     public List<Widget> findWidgetsForTopic(
             @PathVariable("tid") String topicId) {
         return service.findWidgetsForTopic(topicId);

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class WidgetService {
@@ -16,7 +15,7 @@ public class WidgetService {
     @Autowired
     WidgetRepository widgetRepository;
 
-    public Widget createWidget(Widget newWidget) {
+    public Widget createWidget(int tid, Widget newWidget) {
         return widgetRepository.save(newWidget);
     }
 
@@ -39,9 +38,9 @@ public class WidgetService {
         return 1;
     }
 
-    public int updateWidget(String wid, Widget updatedWidget) {
+    public int updateWidget(int wid, Widget updatedWidget) {
         for (int i = 0; i < widgetList.size(); i++) {
-            if (widgetList.get(i).getId().equals(wid)) {
+            if (widgetList.get(i).getId() == wid) {
                 widgetList.set(i, updatedWidget);
                 return 1;
             }

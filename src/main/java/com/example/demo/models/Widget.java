@@ -3,30 +3,52 @@ package com.example.demo.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name="widgets")
+@Table(name = "widgets")
 public class Widget {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private int id;
+    @ManyToOne
+    @JoinColumn(name = "topic_id")
+    private Topic topic;
+    @Column
     private String name;
+    @Column
     private String type = "HEADING";
+    @Column
     private Integer order;
+    @Column
     private String text;
+    @Column
     private String url;
+    @Column
     private Integer size;
+    @Column
     private Integer width;
+    @Column
     private Integer height;
+    @Column
     private String cssClass;
+    @Column
     private String style;
+    @Column
     private String value;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public Topic getTopic() {
+        return topic;
+    }
+
+    public void setTopic(Topic topic) {
+        this.topic = topic;
     }
 
     public String getName() {
